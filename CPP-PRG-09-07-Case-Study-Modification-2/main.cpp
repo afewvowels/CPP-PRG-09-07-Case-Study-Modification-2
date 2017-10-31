@@ -7,11 +7,13 @@
 //
 //  Modify Program 9-19 (the United Cause case study program) so the arrptr array is
 //  sorted in descending order instead of ascending order.
+
 #include <iostream>
 
 using namespace std;
 
 int *fillArray(int);
+void copyArrays(int *, int *, int);
 int *arrSelectSort(int *, int);
 void showArray(const int [], int);
 void showArrPtr(int *, int);
@@ -38,9 +40,11 @@ int main()
     donations = fillArray(NUM_DONATIONS);
     arrPtr = new int[NUM_DONATIONS];
     
-    arrPtr = arrSelectSort(donations, NUM_DONATIONS);
+    copyArrays(arrPtr, donations, NUM_DONATIONS);
     
-    cout << "The donations, sorted in ascending order, are: \n";
+    arrPtr = arrSelectSort(arrPtr, NUM_DONATIONS);
+    
+    cout << "The donations, sorted in descending order, are: \n";
     showArrPtr(arrPtr, NUM_DONATIONS);
     
     cout << "The donations, in their original order, are: \n";
@@ -62,6 +66,14 @@ int *fillArray(int size)
     }
     
     return intArr;
+}
+
+void copyArrays(int *arr01, int *arr02, int size)
+{
+    for (int i = 0 ; i < size ; i++)
+    {
+        arr01[i] = arr02[i];
+    }
 }
 
 int *arrSelectSort(int *arr, int size)
@@ -118,4 +130,3 @@ void swap(int *intA, int *intB)
     intA = intB;
     intB = intTemp;
 }
-
